@@ -19,11 +19,11 @@ def validar_apellido(event):
         etiquetaApellido.config(text="")
 
 def validar_edad(event):
-  contenido = entrada_edad.get()
-  if not contenido.isdigit():
-      etiquetaEdad.config(text="Error: Solo se permiten números en la edad.")
-  else:
-      etiquetaEdad.config(text="")
+    contenido = entrada_edad.get()
+    if not contenido.isdigit():
+        etiquetaEdad.config(text="Error: Solo se permiten números en la edad.")
+    else:
+        etiquetaEdad.config(text="")
 
 def validar_correo(event):
     contenido = entrada_correo.get()
@@ -45,24 +45,24 @@ def validar_fecha(event):
             etiquetaFecha.config(text="")
 
 def validar_todo():
-  contenido_nombre = entrada_nombre.get()
-  contenido_apellido = entrada_apellido.get()
-  contenido_correo = entrada_correo.get()
-  contenido_fecha = entrada_fecha.get()
+    contenido_nombre = entrada_nombre.get()
+    contenido_apellido = entrada_apellido.get()
+    contenido_correo = entrada_correo.get()
+    contenido_fecha = entrada_fecha.get()
 
-  if (re.match("^[a-zA-Z ]+$", contenido_nombre) and
-      re.match("^[a-zA-Z ]+$", contenido_apellido) and
-      all(c.isalnum() or c == '@' for c in contenido_correo) and
-      all(c.isdigit() or c == '/' for c in contenido_fecha)):
-      return True
-  else:
-      return False
+    if (re.match("^[a-zA-Z ]+$", contenido_nombre) and
+        re.match("^[a-zA-Z ]+$", contenido_apellido) and
+        all(c.isalnum() or c == '@' for c in contenido_correo) and
+        all(c.isdigit() or c == '/' for c in contenido_fecha)):
+        return True
+    else:
+        return False
 
 def guardar():
-  if validar_todo():
-    messagebox.showerror("Valido","completado correctamente.")
-  else:
-      messagebox.showerror("Error", "Por favor, complete todos los campos correctamente.")
+    if validar_todo():
+        messagebox.showerror("Valido","completado correctamente.")
+    else:
+        messagebox.showerror("Error", "Por favor, complete todos los campos correctamente.")
 
 # Crear ventana
 ventana = tk.Tk()
