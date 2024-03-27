@@ -24,3 +24,9 @@ urlpatterns = [
     path('v1/post', Post_APIView.as_view()), 
     path('v1/post/<int:pk>/', Post_APIView_Detail.as_view()),
 ]
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('v1/Lapicero', Lapicero_APIView.as_view()), 
+    path('v1/Lapicero/<int:pk>/', Lapicero_APIView_Detail.as_view()),
+]
