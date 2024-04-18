@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter as ttk
 from tkinter import messagebox
 import re
+import requests
 
 def validar_marca(event):
     contenido = entrada_marca.get()
@@ -32,10 +33,10 @@ def validar_material(event):
         etiquetaMaterial.config(text="")
 
 def validar_todo():
-    contenido_nombre = entrada_marca.get()
-    contenido_apellido = entrada_color.get()
-    contenido_correo = entrada_tipo.get()
-    contenido_fecha = entrada_material.get()
+    contenido_marca = entrada_marca.get()
+    contenido_color = entrada_color.get()
+    contenido_tipo = entrada_tipo.get()
+    contenido_material = entrada_material.get()
 
     if (re.match("^[a-zA-Z ]+$", contenido_marca) and
         re.match("^[a-zA-Z ]+$", contenido_color) and
@@ -69,42 +70,59 @@ entrada_marca.bind("<KeyRelease>", validar_marca)
 
 # Crear etiquetas y entradas
 etiqueta_color = tk.Label(ventana, text="Color:")
-etiqueta_color.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+etiqueta_color.grid(row=2, column=0, padx=10, pady=5, sticky="w")
 
 # Crear etiqueta para mostrar error nombre
 etiquetaColor = tk.Label(ventana, fg="red")
-etiquetaColor.grid(row=1, column=0, columnspan=2, padx=10, pady=5)
+etiquetaColor.grid(row=3, column=0, columnspan=2, padx=10, pady=5)
 
 entrada_color = tk.Entry(ventana)
-entrada_color.grid(row=0, column=1, padx=10, pady=5)
+entrada_color.grid(row=2, column=1, padx=10, pady=5)
 entrada_color.bind("<KeyRelease>", validar_color)
 
 # Crear etiquetas y entradas
 etiqueta_tipo = tk.Label(ventana, text="Tipo:")
-etiqueta_tipo.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+etiqueta_tipo.grid(row=4, column=0, padx=10, pady=5, sticky="w")
 
 # Crear etiqueta para mostrar error nombre
 etiquetaTipo = tk.Label(ventana, fg="red")
-etiquetaTipo.grid(row=1, column=0, columnspan=2, padx=10, pady=5)
+etiquetaTipo.grid(row=5, column=0, columnspan=2, padx=10, pady=5)
 
 entrada_tipo = tk.Entry(ventana)
-entrada_tipo.grid(row=0, column=1, padx=10, pady=5)
+entrada_tipo.grid(row=4, column=1, padx=10, pady=5)
 entrada_tipo.bind("<KeyRelease>", validar_tipo)
 
 # Crear etiquetas y entradas
 etiqueta_material = tk.Label(ventana, text="Material:")
-etiqueta_material.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+etiqueta_material.grid(row=6, column=0, padx=10, pady=5, sticky="w")
 
 # Crear etiqueta para mostrar error nombre
 etiquetaMaterial = tk.Label(ventana, fg="red")
-etiquetaMaterial.grid(row=1, column=0, columnspan=2, padx=10, pady=5)
+etiquetaMaterial.grid(row=7, column=0, columnspan=2, padx=10, pady=5)
 
 entrada_material = tk.Entry(ventana)
-entrada_material.grid(row=0, column=1, padx=10, pady=5)
+entrada_material.grid(row=6, column=1, padx=10, pady=5)
 entrada_material.bind("<KeyRelease>", validar_material)
 
 # Botón de guardar
 boton_guardar = tk.Button(ventana, text="Guardar", command=guardar)
 boton_guardar.grid(row=10, column=0, columnspan=2, padx=5, pady=5)
+
+response = requests.get("http://localhost:8000")
+
+print (response.content)
+
+data = {
+    "marca" : entrada_marca.get(),
+    "color" : entrada_color.get(),
+    "tipo" : entrada_tipo.get(),
+    "material" : entrada_material.get()
+}
+
+response = requests.post("http://localhost:8000/v1/lapicero", data= data)
+
+print(response.status_code)
+
+print(response.content)
 
 ventana.mainloop()

@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import *
+from .views.post_view import *
+from .views.lapicero_view import *
 
 app_name = 'api'
 
@@ -23,10 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/post', Post_APIView.as_view()), 
     path('v1/post/<int:pk>/', Post_APIView_Detail.as_view()),
-]
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('v1/Lapicero', Lapicero_APIView.as_view()), 
-    path('v1/Lapicero/<int:pk>/', Lapicero_APIView_Detail.as_view()),
+    path('v1/lapicero', Lapicero_APIView.as_view()), 
+    path('v1/lapicero/<int:pk>/', Lapicero_APIView_Detail.as_view()),
 ]
