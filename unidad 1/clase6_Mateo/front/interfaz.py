@@ -49,17 +49,12 @@ def validar_todo():
 def guardar():
     if validar_todo():
         messagebox.showerror("Valido","completado correctamente.")
-
         data = {
             "marca" : entrada_marca.get(),
             "color" : entrada_color.get(),
             "tipo" : entrada_tipo.get(),
             "material" : entrada_material.get()
         }
-
-
-
-
         response = requests.post("http://127.0.0.1:8000/v1/lapicero",data)
 
         print(response.status_code)
@@ -125,11 +120,5 @@ boton_guardar = tk.Button(ventana, text="Guardar", command=guardar)
 boton_guardar.grid(row=10, column=0, columnspan=2, padx=5, pady=5)
 
 response = requests.get("http://localhost:8000")
-
-#print (response.content)
-
-
-
-
 
 ventana.mainloop()
