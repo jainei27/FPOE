@@ -119,7 +119,7 @@ data = {
     "material" : entrada_material.get()
 }
 
-response = requests.post("http://localhost:8000/v1/lapicero", data= data)
+response = requests.post("http://localhost:8000/v1/lapicero",data)
 
 print(response.status_code)
 
