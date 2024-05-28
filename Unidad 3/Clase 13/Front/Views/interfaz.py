@@ -36,7 +36,14 @@ lblTipo = tk.Label(frame, text='Tipo:')
 lblTipo.grid(row=5, column=0, padx=5, pady=5)
 lblMaterial = tk.Label(frame, text='Material:')
 lblMaterial.grid(row=7, column=0, padx=5, pady=5)
-#crear label para cuando se haga la consulta no se sobre escriba en la interfaz grafica para dentro de 8 días 
+lblMarcaConsulta = tk.Label(frame, text='')
+lblMarcaConsulta.grid(row=16, column=1, padx=5, pady=5)
+lblColorConsulta = tk.Label(frame, text='')
+lblColorConsulta.grid(row=17, column=1, padx=5, pady=5)
+lblTipoConsulta = tk.Label(frame, text='')
+lblTipoConsulta.grid(row=18, column=1, padx=5, pady=5)
+lblMaterialConsulta = tk.Label(frame, text='') 
+lblMaterialConsulta.grid(row=19, column=1, padx=5, pady=5)
 
 txtMarca = tk.Entry(frame, width=20)
 txtMarca.grid(row=1, column=1, padx=5, pady=5)  
@@ -80,10 +87,10 @@ txtMaterial.bind('<KeyRelease>', Validaciones.Advertencia4)
 btnIngresar = tk.Button(frame, text='Ingresar', command=PeticionIngresarLapicero)
 btnIngresar.grid(row=10, column=1, columnspan=2, pady=10)
 
-boton_consultar1 = tk.Button(frame, text="consultar1", command=lambda: accion_consultar_boton(lblMarca, lblColor, lblTipo, lblMaterial, txtentryid.get()))
+boton_consultar1 = tk.Button(frame, text="consultar1", command=lambda: accion_consultar_boton(lblMarcaConsulta, lblColorConsulta, lblTipoConsulta, lblMaterialConsulta, txtentryid.get()))
 boton_consultar1.grid(row=12, column=1, columnspan=2, pady=10)
 
 boton_consultar_todos = tk.Button(frame, text="consultar todos", command=lambda: accion_consultar_todo(txtMarca.get(), txtColor.get(), txtTipo.get(), txtMaterial.get()))
-boton_consultar_todos.grid(row=13, column=1, columnspan=2, pady=10)
+boton_consultar_todos.grid(row=14, column=1, columnspan=2, pady=10)
 
 principal.mainloop()
