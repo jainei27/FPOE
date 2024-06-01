@@ -1,28 +1,31 @@
 import requests
 
-class Peticiones():
-    
-    def __init__(self, frame):
+class Comunicacion():
+
+    def __init__(self, ventanaPrincipal):
         self.url = 'http://127.0.0.1:8000/v1/lapicero'
-        self.frame = frame
+        self.ventanaPrincipal = ventanaPrincipal
         pass
     
+    def eliminar(self,id):
+        resultado = requests.delete(self.url + '/' + str(id))
+        return resultado
+
     def guardar(self, marca, color, tipo, material):
         try:
             print(marca, color, tipo, material)
             data = {
-                "marca": marca,
-                "color": color,
-                "tipo": tipo,
-                "material": material
-            }   
+                'marca': marca,
+                'color': color,
+                'tipo': tipo,
+                'material': material
+            }
             resultado = requests.post(self.url, json=data)
             print(resultado.json)
             return resultado
         except:
             pass
-
-
+        
     def actualizar(self, id, marca, color, tipo, material):
         try:
             print(marca, color, tipo, material)
@@ -37,11 +40,7 @@ class Peticiones():
             return resultado
         except:
             pass
-
-    def eliminar(self, id):
-        resultado = requests.delete(self.url + '/' + str(id))
-        return resultado.status_code
-
+    
     def consultar(self, id):
         resultado = requests.get(self.url + '/' + str(id))
         print(resultado.text)
@@ -52,17 +51,16 @@ class Peticiones():
             print("Respuesta no es un JSON válido.")
             return None
     
-    def consultar_todo(self, marca, color, tipo, material):
+    def consultar_todo(self, material, color, tipo, marca):
         url = self.url + "?"
-        print(type(marca))
+        print(type(tipo))
         if marca != '':
             url = url + 'marca=' + str(marca) + "&"
         if color != '':
             url = url + 'color=' + str(color) + "&"
-        if tipo != '':
+        if  tipo != '':
             url = url + 'tipo=' + str(tipo) + "&"
-        if material != '':
+        if  material != '':
             url = url + 'material=' + str(material) + "&"
-        print(url)
         resultado = requests.get(url)
         return resultado.json()
