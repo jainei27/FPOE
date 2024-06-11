@@ -8,7 +8,7 @@ from vistas.tabla import Tabla
 class Interfaz:
 
     def __init__(self):
-        titulos_cliente = ['identificador','nombre','apellido','cedula','telefono', 'correo']
+        titulos_cliente = ['Identificador','Nombre','Apellido','Cedula','Telefono', 'Correo']
         columnas_cliente = ['id','nombre','apellido','cedula','telefono', 'correo']
 
         titulos_servicios = ['identificador','nombre del servicio','cedula','descripcion','valor']
@@ -18,6 +18,7 @@ class Interfaz:
         data1 = []
 
         self.ventanaPrincipal = tk.Tk()
+        self.ventanaPrincipal.geometry("1000x1000")
         #self.ventanaPrincipal.resizable(0, 0)
         self.comunicacion = Comunicacion(self.ventanaPrincipal)
         self.tabla = Tabla(self.ventanaPrincipal,titulos_cliente, columnas_cliente, data)
@@ -179,31 +180,31 @@ class Interfaz:
         usuario = Usuario(self.ventanaPrincipal)
 
 #Espacios de texto y entardas de texto principales
-        labelNombre = tk.Label(self.ventanaPrincipal, text="nombre")
+        labelNombre = tk.Label(self.ventanaPrincipal, text="Nombre")
         self.entryNombre = tk.Entry(self.ventanaPrincipal, textvariable=usuario.nombre)
-        labelApellido = tk.Label(self.ventanaPrincipal, text="apellido")
+        labelApellido = tk.Label(self.ventanaPrincipal, text="Apellido")
         self.entryApellido = tk.Entry(self.ventanaPrincipal, textvariable=usuario.apellido)
-        labelCedula = tk.Label(self.ventanaPrincipal, text="cedula")
+        labelCedula = tk.Label(self.ventanaPrincipal, text="Cedula")
         self.entryCedula = tk.Entry(self.ventanaPrincipal, textvariable=usuario.cedula)
-        labelTelefono = tk.Label(self.ventanaPrincipal, text="telefono")
+        labelTelefono = tk.Label(self.ventanaPrincipal, text="Telefono")
         self.entryTelefono = tk.Entry(self.ventanaPrincipal, textvariable=usuario.telefono)
-        labelCorreo= tk.Label(self.ventanaPrincipal, text="telefono")
+        labelCorreo= tk.Label(self.ventanaPrincipal, text="Correo")
         self.entryCorreo = tk.Entry(self.ventanaPrincipal, textvariable=usuario.telefono)
 
 #epacios de texto de servicios
-        labelNombre_del_servicio = tk.Label(self.ventanaPrincipal, text="nombre del servicio")
+        labelNombre_del_servicio = tk.Label(self.ventanaPrincipal, text="Nombre servicio")
         self.entryNombre_del_servicio = tk.Entry(self.ventanaPrincipal, textvariable=usuario.nombre_del_servicio)
-        labelCedula_servicio = tk.Label(self.ventanaPrincipal, text="cedula")
+        labelCedula_servicio = tk.Label(self.ventanaPrincipal, text="Cedula")
         self.entryCedula_servicio = tk.Entry(self.ventanaPrincipal, textvariable=usuario.cedula_servicio)
-        labelDescripcion = tk.Label(self.ventanaPrincipal, text="descripcion")
+        labelDescripcion = tk.Label(self.ventanaPrincipal, text="Descripcion")
         self.entryDescripcion = tk.Entry(self.ventanaPrincipal, textvariable=usuario.descripcion)
-        labelValor = tk.Label(self.ventanaPrincipal, text="valor")
+        labelValor = tk.Label(self.ventanaPrincipal, text="Valor")
         self.entryValor = tk.Entry(self.ventanaPrincipal, textvariable=usuario.valor)
 
         labelId = tk.Label(self.ventanaPrincipal, text="ID")
         self.entryId = tk.Entry(self.ventanaPrincipal)
 
-        labelId_servicios = tk.Label(self.ventanaPrincipal, text="ID")
+        labelId_servicios = tk.Label(self.ventanaPrincipal, text="ID/Ser.")
         self.entryId_servicios = tk.Entry(self.ventanaPrincipal)
 
 
@@ -293,41 +294,42 @@ class Interfaz:
         self.entryCedula.place(x=120, y=100)
         labelTelefono.place(x=20, y=140)
         self.entryTelefono.place(x=120, y=140)
-        labelCorreo.place(x=20, y=140)
-        self.entryCorreo.place(x=120, y=140)
+        labelCorreo.place(x=20, y=180)
+        self.entryCorreo.place(x=120, y=180)
 
         #Coordenadas de las entradas y texto principal de los servicios
-        labelNombre_del_servicio.place(x=20, y=20)
-        self.entryNombre_del_servicio.place(x=240, y=20)
-        labelCedula_servicio.place(x=20, y=60)
-        self.entryCedula_servicio.place(x=240, y=60)
-        labelDescripcion.place(x=20, y=100)
-        self.entryDescripcion.place(x=240, y=100)
-        labelValor.place(x=20, y=140)
-        self.entryValor.place(x=240, y=140)
+        labelNombre_del_servicio.place(x=500, y=20)
+        self.entryNombre_del_servicio.place(x=600, y=20)
+        labelCedula_servicio.place(x=500, y=60)
+        self.entryCedula_servicio.place(x=600, y=60)
+        labelDescripcion.place(x=500, y=100)
+        self.entryDescripcion.place(x=600, y=100)
+        labelValor.place(x=500, y=140)
+        self.entryValor.place(x=600, y=140)
 
 
-        boton_guardar_cliente.place(x=20, y=180)
-        boton_consultar_1_cliente.place(x=100, y=180)
-        boton_consultar_todos_clientes.place(x=180, y=180)
-        boton_actualizar_clientes.place(x=300, y=180)
-        boton_limpiar_clientes.place(x=380, y=180)
-
-        
-        boton_guardar_servicio.place(x=20, y=360)
-        boton_consultar_1_servicio.place(x=100, y=360)
-        boton_consultar_todos_servicios.place(x=180, y=360)
-        boton_actualizar_servicio.place(x=300, y=360)
-        boton_limpiar_servicios.place(x=380, y=360)
+        boton_guardar_cliente.place(x=20, y=210)
+        boton_consultar_1_cliente.place(x=100, y=210)
+        boton_consultar_todos_clientes.place(x=180, y=210)
+        boton_actualizar_clientes.place(x=300, y=210)
+        boton_limpiar_clientes.place(x=380, y=210)
 
         
+        boton_guardar_servicio.place(x=500, y=210)
+        boton_consultar_1_servicio.place(x=580, y=210)
+        boton_consultar_todos_servicios.place(x=660, y=210)
+        boton_actualizar_servicio.place(x=760, y=210)
+        boton_limpiar_servicios.place(x=840, y=210)
 
-        labelId.place(x=20, y=220)
-        self.entryId.place(x=60, y=220)
-        self.entryId_servicios.place(x=60, y=280)
+        
 
-        self.tabla.tabla.place(x=300,y=400, width=500, height=200)
-        self.tablas.tabla.place(x=300,y=400, width=500, height=200)
+        labelId.place(x=20, y=250)
+        self.entryId.place(x=60, y=250)
+        labelId_servicios.place(x=500, y=250)
+        self.entryId_servicios.place(x=540, y=250)
+
+        self.tabla.tabla.place(x=50,y=330)
+        self.tablas.tabla.place(x=50,y=580)
 
         def seleccionar_elemento_clientes(_):
             for i in self.tabla.tabla.selection():
