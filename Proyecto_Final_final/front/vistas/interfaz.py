@@ -26,50 +26,52 @@ class Interfaz:
 
     def validar_entrada(self, valor, etiqueta_error):
         mensaje_error = Validaciones.validarLetrasNumeros(valor)
+        mensaje_error1 = Validaciones.validarNumeros(valor)
         if mensaje_error:
             etiqueta_error.config(text=mensaje_error)
+            etiqueta_error.config(text=mensaje_error1)
         else:
             etiqueta_error.config(text="")
 
     def guardar_boton_cliente(self, nombre, apellido, cedula, telefono, correo, nombre_error, apellido_error, 
-        cedula_servicio_error, telefono_error, correo_error):
+        cedula_error, telefono_error, correo_error):
 
 
         # Validaciones
         nombre_msg = Validaciones.validarLetrasNumeros(nombre)
         apellido_msg = Validaciones.validarLetrasNumeros(apellido)
-        cedula_servicio_msg = Validaciones.validarLetrasNumeros(cedula)
-        telefono_msg = Validaciones.validarLetrasNumeros(telefono)
+        cedula_servicio_msg = Validaciones.validarNumeros(cedula)
+        telefono_msg = Validaciones.validarNumeros(telefono)
         correo_msg = Validaciones.validarLetrasNumeros(correo)
 
         if nombre_msg or apellido_msg or cedula_servicio_msg or telefono_msg or correo_msg:
             nombre_error.config(text=nombre_msg or "")
             apellido_error.config(text=apellido_msg or "")
-            cedula_servicio_error.config(text=cedula_servicio_msg or "")
+            cedula_error.config(text=cedula_servicio_msg or "")
             telefono_error.config(text=telefono_msg or "")
             correo_error.config(text=correo_msg or "")
             # Mostrar un mensaje de error general si algún campo no es válido
             messagebox.showwarning("Error", "Por favor, complete todos los campos correctamente.")
         else:
-            self.comunicacion.guardar_clientes(nombre,apellido,cedula,telefono)
+            self.comunicacion.guardar_clientes(nombre,apellido,cedula,telefono, correo)
             nombre_error.config(text="")
             apellido_error.config(text="")
-            cedula_servicio_error.config(text="")
+            cedula_error.config(text="")
             telefono_error.config(text="")
             correo_error.config(text="")
             # Mostrar un mensaje de éxito
             messagebox.showwarning("Éxito", "Los datos han sido guardados correctamente.")
             self.limpiar_cajas_clientes()
-            self.consultar_todo_clientes(self.entryNombre.get(), self.entryApellido.get(), self.entryCedula.get(), self.entryTelefono.get(), self.entrycorreo.get()   )
+            self.consultar_todo_clientes(self.entryNombre.get(), self.entryApellido.get(), self.entryCedula.get(), self.entryTelefono.get(), self.entryCorreo.get())
 
 
 
     def guardar_boton_servicios(self, nombre_del_servicio, cedula_servicio, descripcion, valor, nombre_del_servicio_error, cedula_servicio_error, descripcion_error, valor_error):
 
         nombre_del_servicio_msg = Validaciones.validarLetrasNumeros(nombre_del_servicio)
-        cedula_servicio_msg = Validaciones.validarLetrasNumeros(cedula_servicio)
+        cedula_servicio_msg = Validaciones.validarNumeros(cedula_servicio)
         descripcion_msg = Validaciones.validarLetrasNumeros(descripcion)
-        valor_msg = Validaciones.validarLetrasNumeros(valor)
+        valor_msg = Validaciones.validarNumeros(valor)
 
 
         if nombre_del_servicio_msg or cedula_servicio_msg or descripcion_msg or valor_msg:
@@ -101,7 +103,7 @@ class Interfaz:
         else:
             self.comunicacion.actualizar_clientes(id, nombre,apellido,cedula,telefono,correo)
             self.limpiar_cajas_clientes()
-            self.consultar_todo_clientes(self.entryNombre.get(), self.entryApellido.get(), self.entryCedula.get(), self.entryTelefono.get(), self.entrycorreo.get())
+            self.consultar_todo_clientes(self.entryNombre.get(), self.entryApellido.get(), self.entryCedula.get(), self.entryTelefono.get(), self.entryCorreo.get())
 
 
 
@@ -151,12 +153,12 @@ class Interfaz:
 
     def consultar_todo_servicios(self, nombre_del_servicio,cedula_servicio,descripcion,valor):
         resultado = self.comunicacion.consultar_todo_servicios(nombre_del_servicio,cedula_servicio,descripcion,valor)
-        data= []
+        data1= []
         for elemento in resultado:
 
-            data.append((elemento.get('id'),elemento.get('nombre_del_servicio'), 
+            data1.append((elemento.get('id'),elemento.get('nombre_del_servicio'), 
                         elemento.get('cedula_servicio'),elemento.get('descripcion'),elemento.get('valor')))
-        self.tablas.refrescar(data)
+        self.tablas.refrescar(data1)
 
         print(resultado)
         print(type(resultado))
@@ -168,6 +170,7 @@ class Interfaz:
         self.entryApellido.delete(0,tk.END)
         self.entryCedula.delete(0,tk.END)
         self.entryTelefono.delete(0,tk.END)
+        self.entryCorreo.delete(0,tk.END)
         self.entryId.delete(0,tk.END)
 
     def limpiar_cajas_servicios(self):
@@ -189,7 +192,7 @@ class Interfaz:
         labelTelefono = tk.Label(self.ventanaPrincipal, text="Telefono")
         self.entryTelefono = tk.Entry(self.ventanaPrincipal, textvariable=usuario.telefono)
         labelCorreo= tk.Label(self.ventanaPrincipal, text="Correo")
-        self.entryCorreo = tk.Entry(self.ventanaPrincipal, textvariable=usuario.telefono)
+        self.entryCorreo = tk.Entry(self.ventanaPrincipal, textvariable=usuario.correo)
 
 #epacios de texto de servicios
         labelNombre_del_servicio = tk.Label(self.ventanaPrincipal, text="Nombre servicio")
@@ -210,30 +213,30 @@ class Interfaz:
 
         #Etiquetas de error del usuario
         nombre_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        nombre_error.place(x=260, y=20)
+        nombre_error.place(x=300, y=20)
         apellido_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        apellido_error.place(x=260, y=60)
-        cedula_servicio_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        cedula_servicio_error.place(x=260, y=100)
+        apellido_error.place(x=300, y=60)
+        cedula_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
+        cedula_error.place(x=300, y=100)
         telefono_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        telefono_error.place(x=260, y=140)
+        telefono_error.place(x=300, y=140)
         correo_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        correo_error.place(x=260, y=140)
+        correo_error.place(x=300, y=180)
 
         #Etiquetas de error del servicio
         nombre_del_servicio_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        nombre_del_servicio_error.place(x=260, y=20)
+        nombre_del_servicio_error.place(x=1100, y=20)
         cedula_servicio_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        cedula_servicio_error.place(x=260, y=60)
+        cedula_servicio_error.place(x=1100, y=60)
         descripcion_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        descripcion_error.place(x=260, y=100)
+        descripcion_error.place(x=1100, y=100)
         valor_error = tk.Label(self.ventanaPrincipal, text="", fg="red")
-        valor_error.place(x=260, y=140)
+        valor_error.place(x=1100, y=140)
 
         #Comandos con el teclado usuario
         self.entryNombre.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryNombre.get(), nombre_error))
         self.entryApellido.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryApellido.get(), apellido_error))
-        self.entryCedula.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryCedula.get(), cedula_servicio_error))
+        self.entryCedula.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryCedula.get(), cedula_error))
         self.entryTelefono.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryTelefono.get(), telefono_error))
         self.entryCorreo.bind("<KeyRelease>", lambda event: self.validar_entrada(self.entryCorreo.get(), correo_error))
 
@@ -245,7 +248,7 @@ class Interfaz:
 
         boton_guardar_cliente = tk.Button(self.ventanaPrincipal, text="Guardar", command=lambda: 
         self.guardar_boton_cliente(self.entryNombre.get(), self.entryApellido.get(), self.entryCedula.get(), 
-        self.entryTelefono.get(), self.entryCorreo.get(), nombre_error, apellido_error, cedula_servicio_error, telefono_error, correo_error))
+        self.entryTelefono.get(), self.entryCorreo.get(), nombre_error, apellido_error, cedula_error, telefono_error, correo_error))
 
         
         boton_guardar_servicio = tk.Button(self.ventanaPrincipal, text="Guardar", command=lambda: 
@@ -298,14 +301,14 @@ class Interfaz:
         self.entryCorreo.place(x=120, y=180)
 
         #Coordenadas de las entradas y texto principal de los servicios
-        labelNombre_del_servicio.place(x=500, y=20)
-        self.entryNombre_del_servicio.place(x=600, y=20)
-        labelCedula_servicio.place(x=500, y=60)
-        self.entryCedula_servicio.place(x=600, y=60)
-        labelDescripcion.place(x=500, y=100)
-        self.entryDescripcion.place(x=600, y=100)
-        labelValor.place(x=500, y=140)
-        self.entryValor.place(x=600, y=140)
+        labelNombre_del_servicio.place(x=800, y=20)
+        self.entryNombre_del_servicio.place(x=900, y=20)
+        labelCedula_servicio.place(x=800, y=60)
+        self.entryCedula_servicio.place(x=900, y=60)
+        labelDescripcion.place(x=800, y=100)
+        self.entryDescripcion.place(x=900, y=100)
+        labelValor.place(x=800, y=140)
+        self.entryValor.place(x=900, y=140)
 
 
         boton_guardar_cliente.place(x=20, y=210)
@@ -315,21 +318,21 @@ class Interfaz:
         boton_limpiar_clientes.place(x=380, y=210)
 
         
-        boton_guardar_servicio.place(x=500, y=210)
-        boton_consultar_1_servicio.place(x=580, y=210)
-        boton_consultar_todos_servicios.place(x=660, y=210)
-        boton_actualizar_servicio.place(x=760, y=210)
-        boton_limpiar_servicios.place(x=840, y=210)
+        boton_guardar_servicio.place(x=800, y=210)
+        boton_consultar_1_servicio.place(x=880, y=210)
+        boton_consultar_todos_servicios.place(x=960, y=210)
+        boton_actualizar_servicio.place(x=1060, y=210)
+        boton_limpiar_servicios.place(x=1140, y=210)
 
         
 
         labelId.place(x=20, y=250)
         self.entryId.place(x=60, y=250)
-        labelId_servicios.place(x=500, y=250)
-        self.entryId_servicios.place(x=540, y=250)
+        labelId_servicios.place(x=800, y=250)
+        self.entryId_servicios.place(x=900, y=250)
 
-        self.tabla.tabla.place(x=50,y=330)
-        self.tablas.tabla.place(x=50,y=580)
+        self.tabla.tabla.place(x=20, y=300, width=600, height=300)
+        self.tablas.tabla.place(x=750, y=300, width=600, height=300)
 
         def seleccionar_elemento_clientes(_):
             for i in self.tabla.tabla.selection():
