@@ -28,13 +28,13 @@ class Comunicacion():
             pass
 
         #guardar datos de servicio
-    def guardar_servicios(self, nombre_del_servicio, cedula_servicio, descripcion, valor):
+    def guardar_servicios(self, nombre_del_servicio, cedula, descripcion, valor):
         try:
-            print(nombre_del_servicio, cedula_servicio, descripcion, valor)
+            print(nombre_del_servicio, cedula, descripcion, valor)
 
             data = {
                 'nombre': nombre_del_servicio,
-                'cedula': cedula_servicio,
+                'cedula': cedula,
                 'descrpcion': descripcion,
                 'valor': valor
             }
