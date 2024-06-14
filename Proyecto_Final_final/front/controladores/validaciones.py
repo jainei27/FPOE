@@ -19,3 +19,5 @@ class Validaciones():
         if not resultado:
             return "Solo caracteres validos."
         return None
+    
+    

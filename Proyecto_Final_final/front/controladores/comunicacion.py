@@ -35,7 +35,7 @@ class Comunicacion():
             data = {
                 'nombre': nombre_del_servicio,
                 'cedula': cedula_servicio,
-                'descrpcion': descripcion,
+                'descripcion': descripcion,
                 'valor': valor
             }
             resultado = requests.post(self.url, json=data)
@@ -44,12 +44,19 @@ class Comunicacion():
 
         except:
             pass
+
+    def consultar_cedula(self, cedula):
+        resultado = requests.get(self.url1 + '?cedula=' + str(cedula))
+        data = resultado.json()  
+
+        if data and len(data) > 0:
+            return True
+        else:
+            return False
  
     #actualizar datos de cliente
-    def actualizar_clientes(self,id, nombre,apellido,cedula,telefono, correo):
+    def actualizar_clientes(self, id, nombre, apellido, cedula, telefono, correo):
         try:
-            print(nombre,apellido,cedula,telefono, correo)
-
             data = {
                 'nombre': nombre,
                 'apellido': apellido,
@@ -57,12 +64,21 @@ class Comunicacion():
                 'telefono': telefono,
                 'correo': correo
             }
-            resultado = requests.put(self.url1 + '/' + id + '/', json=data)
-            print(resultado.json)
-            return resultado
+            url = self.url1 + '/' + id + '/'
+            print("URL de la solicitud PUT:", url)
+            resultado = requests.put(url, json=data)
+            if resultado.status_code == 200:
+                print("Los datos se actualizaron correctamente.")
+                return True
+            else:
+                print(f"Hubo un problema al actualizar los datos. Código de error: {resultado.status_code}")
+                return False
+        except requests.RequestException as e:
+            print("Error al realizar la solicitud:", e)
+            return False
+        
 
-        except:
-            pass
+
 
     #actualizar datos de servicio
     def actualizar_servicios(self,id, nombre_del_servicio, cedula_servicio, descripcion, valor):
@@ -71,7 +87,7 @@ class Comunicacion():
             data = {
                 'nombre': nombre_del_servicio,
                 'cedula': cedula_servicio,
-                'descrpcion': descripcion,
+                'descripcion': descripcion,
                 'valor': valor,
             }
             resultado = requests.put(self.url + '/' + id + '/', json=data)

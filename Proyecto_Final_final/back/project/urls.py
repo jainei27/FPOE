@@ -26,7 +26,7 @@ urlpatterns = [
     path('v1/post', Post_APIView.as_view()), 
     path('v1/post/<int:pk>/', Post_APIView_Detail.as_view()),
     path('v1/Cliente', Cliente_APIView.as_view()), 
-    path('v1/cliente/<int:pk>/', Cliente_APIView_Detail.as_view()),
+    path('v1/Cliente/<int:pk>/', Cliente_APIView_Detail.as_view()),
     path('v1/Servicios', Servicios_APIView.as_view()), 
-    path('v1/servicios/<int:pk>/', Servicios_APIView_Detail.as_view()),
+    path('v1/Servicios/<int:pk>/', Servicios_APIView_Detail.as_view()),
 ]

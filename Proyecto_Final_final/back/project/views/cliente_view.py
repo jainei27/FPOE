@@ -24,7 +24,6 @@ class Cliente_APIView(APIView):
 class Cliente_APIView_Detail(APIView):
     def get_object(self, pk):
         try:
-
             return Cliente.objects.get(pk=pk)
         except Cliente.DoesNotExist:
             raise Http404
