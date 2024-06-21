@@ -1,12 +1,16 @@
 Clientes:
-{'id': 1, 'nombre': 'Sergio', 'apellido': 'Lamos Lozano', 'cedula': '1115195045', 'telefono': '3022076776', 'correo': 'sergio.lamos@correounivalle.edu.co'}
-{'id': 2, 'nombre': 'fffff', 'apellido': 'fffff', 'cedula': '33333', 'telefono': '44444', 'correo': '44444'}
-{'id': 3, 'nombre': 'Ivan', 'apellido': 'gallego', 'cedula': '1095178181', 'telefono': '3136642706', 'correo': 'jainer.gallego'}
-{'id': 4, 'nombre': 'chucho', 'apellido': 'checho', 'cedula': '1234567890', 'telefono': '1234567890', 'correo': 'chucho.checho'}
-{'id': 5, 'nombre': '11111', 'apellido': '11111111111', 'cedula': '1111111', 'telefono': '111111', 'correo': '1111111'}
+{'id': 1, 'nombre': 'Sergioa', 'apellido': 'Lamos Lozano', 'cedula': 1115195045, 'telefono': 3022076776, 'correo': 'sergio.lamos@correounivalle.edu.co'}
+{'id': 2, 'nombre': 'fffff', 'apellido': 'fffff', 'cedula': 33333, 'telefono': 44444, 'correo': '44444'}
+{'id': 3, 'nombre': 'Ivan', 'apellido': 'gallego', 'cedula': 1095178181, 'telefono': 3136642706, 'correo': 'jainer.gallego'}
+{'id': 4, 'nombre': 'chucho', 'apellido': 'checho', 'cedula': 1234567890, 'telefono': 1234567890, 'correo': 'chucho.checho'}
+{'id': 5, 'nombre': '11111', 'apellido': '11111111111', 'cedula': 1111111, 'telefono': 111111, 'correo': '1111111'}
+{'id': 7, 'nombre': 'ffff', 'apellido': 'fffff', 'cedula': 333, 'telefono': 333, 'correo': '333rrfdsertgfsdf'}
+{'id': 8, 'nombre': 'dsfsd', 'apellido': 'dfsfsd', 'cedula': 1231231, 'telefono': 1231231, 'correo': 'sadfsad'}
+{'id': 9, 'nombre': 'dfwerfwer', 'apellido': 'referfe', 'cedula': 125485, 'telefono': 3256897, 'correo': 'truyrtyrty'}
+{'id': 10, 'nombre': 'tyujhut', 'apellido': 'tjtyjty', 'cedula': 34534, 'telefono': 345345, 'correo': 'dfgdfg'}
 Servicios:
-{'id': 1, 'nombre': 'Lavado turbo', 'cedula': '1115195045', 'descripcion': 'lavado rapido', 'valor': '50000'}
-{'id': 2, 'nombre': 'lavado rapido', 'cedula': '11111', 'descripcion': 'aaaaa', 'valor': '50000'}
-{'id': 3, 'nombre': 'rapidin', 'cedula': '1', 'descripcion': 'flash', 'valor': '20000'}
-{'id': 4, 'nombre': 'no lava', 'cedula': '33333', 'descripcion': 'hasta al conductor', 'valor': '100000'}
-{'id': 5, 'nombre': 'ilucionada', 'cedula': '1095178180', 'descripcion': 'vino  ilusiono y se fue', 'valor': '1000'}
+{'id': 1, 'nombre': 'Lavado turboA', 'cedula': 1115195045, 'descripcion': 'lavado rapido', 'valor': 50000}
+{'id': 2, 'nombre': 'lavado rapido', 'cedula': 11111, 'descripcion': 'aaaaa', 'valor': 50000}
+{'id': 3, 'nombre': 'rapidin', 'cedula': 1, 'descripcion': 'flash', 'valor': 20000}
+{'id': 4, 'nombre': 'no lava', 'cedula': 33333, 'descripcion': 'hasta al conductor', 'valor': 100000}
+{'id': 5, 'nombre': 'ilucionada', 'cedula': 1095178180, 'descripcion': 'vino  ilusiono y se fue', 'valor': 1000}
